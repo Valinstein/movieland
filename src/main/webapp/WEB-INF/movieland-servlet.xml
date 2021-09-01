@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.valentyn.movieland.controller"/>
+
+
+    <bean id="movieService" class="com.valentyn.movieland.service.impl.MovieServiceImpl">
+        <property name="movieDao" ref="movieDao"/>
+    </bean>
+    <bean id="movieController" class="com.valentyn.movieland.controller.MovieController">
+        <property name="movieService" ref="movieService"/>
+    </bean>
+
+    <bean id="movieDao" class="com.valentyn.movieland.dao.jdbc.MovieDaoImpl">
+    </bean>
+
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="dataSource" class="org.postgresql.ds.PGSimpleDataSource">
+        <property name="user" value="${db.user}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="url" value="${db.url}"/>
+    </bean>
+
+    <mvc:annotation-driven/>
+
+</beans>
