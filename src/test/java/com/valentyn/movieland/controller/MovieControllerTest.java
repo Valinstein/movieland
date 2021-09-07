@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
-@ContextConfiguration("classpath:../webapp/WEB-INF/movieland-servlet.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/movieland-servlet.xml")
 class MovieControllerTest {
 
     MockMvc mockMvc;
@@ -44,7 +44,7 @@ class MovieControllerTest {
     public void testIfResponseIsJsonAndItIncludesMovie() throws Exception {
         String mockTestResult = "The Shawshank Redemption";
 
-        RequestBuilder builder = MockMvcRequestBuilders.get("/api/v1/movie");
+        RequestBuilder builder = MockMvcRequestBuilders.get("/movie/all");
         MvcResult mvcResult = mockMvc.perform(builder).andExpect(ok)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andReturn();
         String res = mvcResult.getResponse().getContentAsString();

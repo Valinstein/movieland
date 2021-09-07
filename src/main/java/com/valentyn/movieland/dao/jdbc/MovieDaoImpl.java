@@ -17,11 +17,13 @@ public class MovieDaoImpl implements MovieDao {
         + "name_native, year_of_release, description, rating, price, "
         + "picture_path, votes FROM movie;";
 
+    private static MovieRowMapper rowMapper;
+
     private JdbcTemplate jdbcTemplate;
 
 
     @Override
     public List<Movie> findAll() {
-        return jdbcTemplate.query(GET_ALL_MOVIES, new MovieRowMapper());
+        return jdbcTemplate.query(GET_ALL_MOVIES, rowMapper);
     }
 }
