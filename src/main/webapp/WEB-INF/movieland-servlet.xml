@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.valentyn.movieland.controller"/>
+    <context:component-scan base-package="com.valentyn"/>
 
 
     <bean id="movieService" class="com.valentyn.movieland.service.impl.MovieServiceImpl">
