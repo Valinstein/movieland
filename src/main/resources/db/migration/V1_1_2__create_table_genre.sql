@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS genre
+(
+    id   SERIAL PRIMARY KEY,
+    name VARCHAR(45) NOT NULL
+);

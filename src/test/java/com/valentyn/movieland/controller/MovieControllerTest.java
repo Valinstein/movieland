@@ -45,7 +45,7 @@ class MovieControllerTest {
 
     @Test
     @DisplayName("Check if findAll() response is not empty")
-    public void testIfRandomMoviesIncludesThreeMovies() throws Exception {
+    public void testIfRandomMoviesIncludesThreeMoviesOrMore() throws Exception {
 
         RequestBuilder builder = MockMvcRequestBuilders.get("/movie/all");
         mockMvc.perform(builder)
