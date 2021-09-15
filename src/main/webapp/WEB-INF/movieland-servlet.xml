@@ -17,11 +17,21 @@
     <bean id="movieService" class="com.valentyn.movieland.service.impl.MovieServiceImpl">
         <property name="movieDao" ref="movieDao"/>
     </bean>
+    <bean id="genreService" class="com.valentyn.movieland.service.impl.GenreServiceImpl">
+        <property name="genreDao" ref="genreDao"/>
+    </bean>
     <bean id="movieController" class="com.valentyn.movieland.controller.MovieController">
         <property name="movieService" ref="movieService"/>
     </bean>
 
+    <bean id="genreController" class="com.valentyn.movieland.controller.GenreController">
+        <property name="genreService" ref="genreService"/>
+    </bean>
+
     <bean id="movieDao" class="com.valentyn.movieland.dao.jdbc.MovieDaoImpl">
+    </bean>
+
+    <bean id="genreDao" class="com.valentyn.movieland.dao.jdbc.GenreDaoImpl">
     </bean>
 
     <context:property-placeholder location="classpath:application.properties"/>
