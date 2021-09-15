@@ -17,6 +17,10 @@ public class MovieDaoImpl implements MovieDao {
         + "name_native, year_of_release, description, rating, price, "
         + "picture_path, votes FROM movie;";
 
+    private static final String GET_RANDOM_MOVIES = "SELECT id, name_russian, "
+            + "name_native, year_of_release, description, rating, price, "
+            + "picture_path, votes FROM movie ORDER BY RANDOM() LIMIT ?;";
+
     private MovieRowMapper rowMapper;
 
     private JdbcTemplate jdbcTemplate;
@@ -25,5 +29,10 @@ public class MovieDaoImpl implements MovieDao {
     @Override
     public List<Movie> findAll() {
         return jdbcTemplate.query(GET_ALL_MOVIES, rowMapper);
+    }
+
+    @Override
+    public List<Movie> getRandomMovies(int limit) {
+       return jdbcTemplate.query(GET_RANDOM_MOVIES, rowMapper, limit);
     }
 }
