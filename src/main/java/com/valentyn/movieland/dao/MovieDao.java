@@ -8,4 +8,6 @@ public interface MovieDao {
     List<Movie> findAll();
 
     List<Movie> getRandomMovies(int limit);
+
+    List<Movie> getByGenre(int genreId);
 }

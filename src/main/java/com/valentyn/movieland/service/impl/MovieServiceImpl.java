@@ -23,4 +23,9 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> getRandomMovies(int limit) {
         return movieDao.getRandomMovies(limit);
     }
+
+    @Override
+    public List<Movie> findByGenre(int genreId) {
+        return movieDao.getByGenre(genreId);
+    }
 }

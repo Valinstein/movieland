@@ -4,6 +4,7 @@ import com.valentyn.movieland.entity.Movie;
 import com.valentyn.movieland.service.MovieService;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,11 @@ public class MovieController {
                                        HttpServletResponse response){
 
         return movieService.getRandomMovies(Integer.parseInt(limit));
+    }
+
+    @GetMapping("/genre/{genreId}")
+    public List<Movie> getMoviesByGenre(@PathVariable int genreId,
+                                        HttpServletResponse response){
+        return movieService.findByGenre(genreId);
     }
 }

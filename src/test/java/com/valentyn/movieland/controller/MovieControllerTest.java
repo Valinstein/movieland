@@ -97,4 +97,15 @@ class MovieControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.*", hasSize(greaterThanOrEqualTo(3))));
     }
+
+    @Test
+    @DisplayName("Chech if getMovieByGenre() response has movie with right genre")
+    public void testGetMoviesByGenreHasRightMovies() throws Exception {
+
+        RequestBuilder builder = MockMvcRequestBuilders.get("/movie/genre/5");
+        mockMvc.perform(builder).andExpect(ok)
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.*", hasSize(greaterThanOrEqualTo(1))))
+                .andExpect(jsonPath("$[0].nameNative").value("Forrest Gump"));
+    }
 }
